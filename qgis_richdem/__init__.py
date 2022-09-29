@@ -35,6 +35,6 @@ def classFactory(iface):  # pylint: disable=invalid-name
     :type iface: QgsInterface
     """
     #
-    from .qgis_richdem import QRichDemPlugin
+    from .core.qgis_richdem import QRichDemPlugin
 
     return QRichDemPlugin()

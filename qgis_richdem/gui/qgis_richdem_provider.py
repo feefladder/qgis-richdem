@@ -33,6 +33,7 @@ __revision__ = "$Format:%H$"
 from qgis.core import QgsProcessingProvider
 from .qgis_richdem_algorithm import QRichDemAlgorithm
 from .rd_depression_fill import RdDepressionFill
+from .rd_flow_accumulation import RdFlowAccumulation
 
 
 class QRichDemProvider(QgsProcessingProvider):
@@ -55,8 +56,7 @@ class QRichDemProvider(QgsProcessingProvider):
         """
         self.addAlgorithm(QRichDemAlgorithm())
         self.addAlgorithm(RdDepressionFill())
-        # add additional algorithms here
-        # self.addAlgorithm(MyOtherAlgorithm())
+        self.addAlgorithm(RdFlowAccumulation())
 
     def id(self):
         """

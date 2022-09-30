@@ -29,7 +29,7 @@ __copyright__ = "(C) 2022 by Fee"
 
 # TODO: make installing better:
 # https://github.com/opengisch/QgisModelBaker/pull/644
-# https://github.com/QGEP/qgepplugin/blob/master/qgepplugin/gui/qgepdatamodeldialog.py#L498-L536 noqa: E501
+# https://github.com/QGEP/qgepplugin/blob/master/qgepplugin/gui/qgepdatamodeldialog.py#L498-L536
 
 
 def import_maybe_install_richdem():

@@ -160,7 +160,7 @@ class QRichDemAlgorithm(QgsProcessingAlgorithm):
         contain lowercase alphanumeric characters only and no spaces or other
         formatting characters.
         """
-        return "RichDem raster analysis"
+        return ""
 
     def tr(self, string):
         return QCoreApplication.translate("Processing", string)

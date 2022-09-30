@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>378</width>
-    <height>105</height>
+    <width>305</width>
+    <height>66</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,17 +15,11 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QgsFilterLineEdit" name="lineedit_xy">
-     <property name="placeholderText">
-      <string>Y,X (Lat,Lon)</string>
-     </property>
-     <property name="qgisRelation" stdset="0">
-      <string notr="true"/>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Need to install richdem using pip, continue?</string>
      </property>
     </widget>
-   </item>
-   <item>
-    <widget class="QgsProjectionSelectionWidget" name="crs_input"/>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
@@ -39,18 +33,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QgsFilterLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>qgsfilterlineedit.h</header>
-  </customwidget>
-  <customwidget>
-   <class>QgsProjectionSelectionWidget</class>
-   <extends>QWidget</extends>
-   <header>qgsprojectionselectionwidget.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>

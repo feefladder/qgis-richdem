@@ -27,6 +27,26 @@ __date__ = "2022-09-22"
 __copyright__ = "(C) 2022 by Fee"
 
 
+# TODO: make installing better:
+# https://github.com/opengisch/QgisModelBaker/pull/644
+# https://github.com/QGEP/qgepplugin/blob/master/qgepplugin/gui/qgepdatamodeldialog.py#L498-L536 noqa: E501
+
+
+def import_maybe_install_richdem():
+    try:
+        import richdem as rd
+    except ImportError:
+        import subprocess
+        import sys
+
+        print("installing RichDem!")
+        if subprocess.check_call(
+            [sys.executable, "-m", "pip", "install", "richdem"]
+        ):
+            assert 0
+        import richdem as rd  # noqa: F401
+
+
 # noinspection PyPep8Naming
 def classFactory(iface):  # pylint: disable=invalid-name
     """Load QRichDem class from file QRichDem.
@@ -35,6 +55,7 @@ def classFactory(iface):  # pylint: disable=invalid-name
     :type iface: QgsInterface
     """
     #
-    from .core.qgis_richdem import QRichDemPlugin
+    import_maybe_install_richdem()
+    from .qgis_richdem import QRichDemPlugin
 
     return QRichDemPlugin()

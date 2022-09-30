@@ -34,10 +34,13 @@ import os
 import sys
 import inspect
 
-from qgis.core import QgsProcessingAlgorithm, QgsApplication
-from .qgis_richdem_provider import QRichDemProvider
+from qgis.core import QgsApplication
+
+# import the provider
+from qgis_richdem.gui.qgis_richdem_provider import QRichDemProvider
 
 cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
+
 
 if cmd_folder not in sys.path:
     sys.path.insert(0, cmd_folder)

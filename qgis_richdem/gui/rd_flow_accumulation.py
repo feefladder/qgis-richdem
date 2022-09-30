@@ -113,7 +113,6 @@ class RdFlowAccumulation(QgsProcessingAlgorithm):
 
         dem_array = rd.LoadGDAL(dem.source())
         weights = rd.LoadGDAL(weights.source()) if weights else None
-        print(weights)
         accumulated = rd.FlowAccumulation(
             dem_array, method=method, exponent=exponent, weights=weights
         )
@@ -134,7 +133,7 @@ class RdFlowAccumulation(QgsProcessingAlgorithm):
         lowercase alphanumeric characters only and no spaces or other
         formatting characters.
         """
-        return "RdFlowAccumulation"
+        return "rdflowaccumulation"
 
     def displayName(self):
         """

@@ -34,7 +34,7 @@ __copyright__ = "(C) 2022 by Fee"
 
 def import_maybe_install_richdem():
     try:
-        import richdem as rd
+        import richdem as rd  # noqa: F401
     except ImportError:
         import subprocess
         import sys

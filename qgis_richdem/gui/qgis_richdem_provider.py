@@ -31,8 +31,8 @@ __copyright__ = "(C) 2022 by Fee"
 __revision__ = "$Format:%H$"
 
 from qgis.core import QgsProcessingProvider
-from .qgis_richdem_algorithm import QRichDemAlgorithm
 from .rd_depression_fill import RdDepressionFill
+from .rd_depression_breach import RdDepressionBreach
 from .rd_flow_accumulation import RdFlowAccumulation
 
 
@@ -54,8 +54,8 @@ class QRichDemProvider(QgsProcessingProvider):
         """
         Loads all algorithms belonging to this provider.
         """
-        self.addAlgorithm(QRichDemAlgorithm())
         self.addAlgorithm(RdDepressionFill())
+        self.addAlgorithm(RdDepressionBreach())
         self.addAlgorithm(RdFlowAccumulation())
 
     def id(self):

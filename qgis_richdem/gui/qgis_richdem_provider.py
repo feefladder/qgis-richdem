@@ -34,6 +34,7 @@ from qgis.core import QgsProcessingProvider
 from .rd_depression_fill import RdDepressionFill
 from .rd_depression_breach import RdDepressionBreach
 from .rd_flow_accumulation import RdFlowAccumulation
+from .rd_terrain_attribute import RdTerrainAttribute
 
 
 class QRichDemProvider(QgsProcessingProvider):
@@ -57,6 +58,7 @@ class QRichDemProvider(QgsProcessingProvider):
         self.addAlgorithm(RdDepressionFill())
         self.addAlgorithm(RdDepressionBreach())
         self.addAlgorithm(RdFlowAccumulation())
+        self.addAlgorithm(RdTerrainAttribute())
 
     def id(self):
         """

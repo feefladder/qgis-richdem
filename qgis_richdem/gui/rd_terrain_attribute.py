@@ -19,7 +19,7 @@ from qgis.core import (
 import richdem as rd
 
 
-class RdFlowAccumulation(QgsProcessingAlgorithm):
+class RdTerrainAttribute(QgsProcessingAlgorithm):
     """
     This is an example algorithm that takes a vector layer and
     creates a new identical one.
@@ -39,9 +39,8 @@ class RdFlowAccumulation(QgsProcessingAlgorithm):
 
     OUTPUT = "OUTPUT"
     INPUT = "INPUT"
-    METRIC = "METRIC"
-    EXPONENT = "EXPONENT"
-    WEIGHTS = "WEIGHTS"
+    ATTRIB = "ATTRIB"
+    ZSCALE = "ZSCALE"
 
     def initAlgorithm(self, config):
         """
@@ -54,16 +53,25 @@ class RdFlowAccumulation(QgsProcessingAlgorithm):
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT,
-                self.tr("Input layer"),
+                self.tr("Input layer DEM"),
                 [QgsProcessing.TypeRaster],
             )
         )
 
         self.addParameter(
             QgsProcessingParameterEnum(
-                self.METRIC,
-                self.tr("flow metric"),
-                options=["D8", "Rho8", "Dinf", "Quinn", "Holmgren", "Freeman"],
+                self.ATTRIB,
+                self.tr("Terrain attribute"),
+                options=[
+                    "slope_riserun",
+                    "slope_percentage",
+                    "slope_degrees",
+                    "slope_radians",
+                    "aspect",
+                    "curvature",
+                    "planform_curvature",
+                    "profile_curvature",
+                ],
                 allowMultiple=False,
                 usesStaticStrings=True,
                 defaultValue=["Dinf"],
@@ -72,17 +80,13 @@ class RdFlowAccumulation(QgsProcessingAlgorithm):
 
         self.addParameter(
             QgsProcessingParameterNumber(
-                self.EXPONENT,
-                self.tr("exponent (only for Holmgren or Freeman)"),
+                self.ZSCALE,
+                self.tr(
+                    "z scale (by how much to scale the z-axis before processing"
+                ),
                 type=QgsProcessingParameterNumber.Double,
                 minValue=0,
-                maxValue=1,
                 defaultValue=1,
-            )
-        )
-        self.addParameter(
-            QgsProcessingParameterRasterLayer(
-                self.WEIGHTS, "weights", optional=True, defaultValue=None
             )
         )
 
@@ -104,17 +108,13 @@ class RdFlowAccumulation(QgsProcessingAlgorithm):
         # to uniquely identify the feature sink, and must be included in the
         # dictionary returned by the processAlgorithm function.
         dem = self.parameterAsRasterLayer(parameters, self.INPUT, context)
-        weights = self.parameterAsRasterLayer(
-            parameters, self.WEIGHTS, context
-        )
-        exponent = self.parameterAsDouble(parameters, self.EXPONENT, context)
-        method = self.parameterAsString(parameters, self.METRIC, context)
+        z_scale = self.parameterAsDouble(parameters, self.ZSCALE, context)
+        attribute = self.parameterAsString(parameters, self.ATTRIB, context)
         output = self.parameterAsOutputLayer(parameters, self.OUTPUT, context)
 
         dem_array = rd.LoadGDAL(dem.source())
-        weights = rd.LoadGDAL(weights.source()) if weights else None
-        accumulated = rd.FlowAccumulation(
-            dem_array, method=method, exponent=exponent, weights=weights
+        accumulated = rd.TerrainAttribute(
+            dem_array, attrib=attribute, zscale=z_scale
         )
         rd.SaveGDAL(output, accumulated)
         # Return the results of the algorithm. In this case our only result is
@@ -133,7 +133,7 @@ class RdFlowAccumulation(QgsProcessingAlgorithm):
         lowercase alphanumeric characters only and no spaces or other
         formatting characters.
         """
-        return "rdflowaccumulation"
+        return "rdterrainattribute"
 
     def displayName(self):
         """
@@ -163,4 +163,4 @@ class RdFlowAccumulation(QgsProcessingAlgorithm):
         return QCoreApplication.translate("Processing", string)
 
     def createInstance(self):
-        return RdFlowAccumulation()
+        return RdTerrainAttribute()

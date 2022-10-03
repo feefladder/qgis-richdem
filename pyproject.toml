@@ -8,3 +8,8 @@ exclude = '''
   | dist
 )/
 '''
+
+[tool.coverage.run]
+branch = true
+source = ["qgis_richdem"]
+# omit = ["*/quick_api_dialog_base.py", "*/quick_api.py", '*/__init__.py', "*/tests/*", "*/test_suite.py"]

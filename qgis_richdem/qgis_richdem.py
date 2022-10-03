@@ -37,7 +37,7 @@ import inspect
 from qgis.core import QgsApplication
 
 # import the provider
-from qgis_richdem.gui.qgis_richdem_provider import QRichDemProvider
+from .gui.qgis_richdem_provider import QRichDemProvider
 
 cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
 

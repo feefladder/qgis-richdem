@@ -6,14 +6,14 @@
 name=QRichDem
 qgisMinimumVersion=3.0
 description=Qgis wrappers for RichDem
-version=0.1
+version=0.2
 author=Fee
 email=freakyfee@proton.me
 
-about=This plugin provides wrappers for RichDem - fast terrain analysis tools and was initially developed for the course Land Degradation and Development by Wageningen University to provide an alternative for SAGA
+about=This plugin provides wrappers for RichDem - fast terrain analysis tools and was initially developed for the course Land Degradation and Development by Wageningen University to provide an alternative for SAGA. IT REQUIRES RICHDEM AND WILL TRY TO INSTALL IT IF NOT FOUND. https://landscapearchaeology.org/2018/installing-python-packages-in-qgis-3-for-windows/
 
-tracker=http://bugs
-repository=http://repo
+tracker=https://app.radicle.network/seeds/maple.radicle.garden/rad:git:hnrkbbx9hp911eqcnx8cynmu4mcsaqwnbbi7o/issues
+repository=https://app.radicle.network/seeds/maple.radicle.garden/rad:git:hnrkbbx9hp911eqcnx8cynmu4mcsaqwnbbi7o/tree
 # End of mandatory metadata
 
 # Recommended items:
@@ -25,11 +25,11 @@ hasProcessingProvider=yes
 # Tags are comma separated with spaces allowed
 tags=python hydrology
 
-homepage=http://homepage
+homepage=https://qgis-tuts-wu.readthedocs.io/en/latest/docs/land_degradation_development/index.html
 category=Analysis
 icon=icon.png
 # experimental flag
-experimental=True
+experimental=False
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
@@ -37,11 +37,11 @@ deprecated=False
 # Since QGIS 3.8, a comma separated list of plugins to be installed
 # (or upgraded) can be specified.
 # Check the documentation for more information.
-# plugin_dependencies=qpip
+# plugin_dependencies=
 
 Category of the plugin: Raster, Vector, Database or Web
 # category=
 
 # If the plugin can run on QGIS Server.
-server=False
+server=True
 

@@ -36,14 +36,20 @@ def import_maybe_install_richdem():
     try:
         import richdem as rd  # noqa: F401
     except ImportError:
+        from exceptions import RunTimeError
         import subprocess
-        import sys
+
+        # import sys
 
         print("installing RichDem!")
         if subprocess.check_call(
-            [sys.executable, "-m", "pip", "install", "richdem"]
+            "python3 -m pip install richdem",
+            shell=True
+            # [sys.executable, "-m", "pip", "install", "richdem"]
         ):
-            assert 0
+            raise RunTimeError(
+                "Could not install RichDem. For concrete instructions, see https://qgis-tuts-wu.readthedocs.io/en/latest/docs/land_degradation_development/introduction/installing.html"
+            )
         import richdem as rd  # noqa: F401
 
 

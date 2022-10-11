@@ -2,6 +2,9 @@
 
 venv/
 
+#REMOVE THIS ONCE FLAKE8 IS SET UP CORRECTLY
+qgis_richdem/tests/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

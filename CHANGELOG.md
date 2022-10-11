@@ -13,3 +13,7 @@
 ## [0.2.1]
 ### Changed
 - __init__.py updated to fix windows pip install
+
+## [0.2.2]
+### Changed
+- bugfix

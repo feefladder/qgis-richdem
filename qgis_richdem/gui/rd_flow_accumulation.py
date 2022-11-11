@@ -15,6 +15,7 @@ from qgis.core import (
     QgsProcessingParameterNumber,
     QgsProcessingParameterRasterDestination,
 )
+from numpy import dtype
 
 import richdem as rd
 
@@ -113,8 +114,15 @@ class RdFlowAccumulation(QgsProcessingAlgorithm):
 
         dem_array = rd.LoadGDAL(dem.source())
         weights = rd.LoadGDAL(weights.source()) if weights else None
+        if weights is not None:
+            if weights.dtype != dtype("float64"):
+                print("converting weights raster to Float64!")
+                weights = weights.astype("float64")
         accumulated = rd.FlowAccumulation(
-            dem_array, method=method, exponent=exponent, weights=weights
+            dem_array,
+            method=method,
+            exponent=exponent,
+            weights=weights,
         )
         rd.SaveGDAL(output, accumulated)
         # Return the results of the algorithm. In this case our only result is
